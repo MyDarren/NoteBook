@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+    <script type="text/javascript" src="EventJavaScript.js"></script>
+    <style>
+        #areaDiv{
+            width: 200px;
+            height: 50px;
+            background-color: peachpuff;
+        }
+        #messageDiv{
+            width: 200px;
+            height: 50px;
+            background-color: dimgray;
+            margin-top: 20px;
+        }
+        #redDiv{
+            width: 50px;
+            height: 50px;
+            background-color: cadetblue;
+            position: absolute;
+        }
+        #contentDiv{
+            width: 200px;
+            height: 50px;
+            background-color: peachpuff;
+        }
+        #spanText{
+            background-color: coral;
+        }
+        #deliveDiv1{
+            width: 250px;
+            height: 250px;
+            background-color: coral;
+        }
+        #deliveDiv2{
+            width: 200px;
+            height: 200px;
+            background-color: peachpuff;
+        }
+        #deliveDiv3{
+            width: 150px;
+            height: 150px;
+            background-color: dimgray;
+        }
+        #dragDiv{
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+        }
+        #scrollDiv{
+            width: 50px;
+            height: 100px;
+            background-color: peachpuff;
+            position: absolute;
+        }
+        #keyboardDiv{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+<body style="height: 2000px;width: 2000px">
+    <div id="areaDiv"></div>
+    <div id="messageDiv"></div>
+    <br />
+    <div id="redDiv"></div>
+    <br />
+    <br />
+    <br />
+    <div id="contentDiv">
+        吃饭了吗？
+        <span id="spanText">我吃了!</span>
+    </div>
+
+    <div id="listDiv">
+        <ul id="linkList">
+            <li><a href="javascript:;">百度</a></li>
+            <li><a href="javascript:;">淘宝</a></li>
+            <li><a href="javascript:;">京东</a></li>
+        </ul>
+        <button id="addLink">添加</button>
+    </div>
+    <br />
+    <button id="bandBtn">事件绑定</button>
+    <br />
+    <br />
+    <div id="deliveDiv1">
+        <div id="deliveDiv2">
+            <div id="deliveDiv3"></div>
+        </div>
+    </div>
+    <br />
+    这是一段文字
+    <div id="dragDiv"></div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div id="scrollDiv"></div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div id="keyboardDiv"></div>
+</body>
+</html>

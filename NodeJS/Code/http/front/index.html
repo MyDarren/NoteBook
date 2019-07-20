@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>主页</title>
+	<style type="text/css">
+		h1{
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>年龄</th>
+			</tr>
+		</thead>
+		<tbody id="childrenBody"></tbody>
+	</table>
+	
+	<!-- 使用hs -o，然后浏览器打开http://127.0.0.1:8080/index.html -->
+	<script type="text/javascript" src="template-web.js"></script>
+	<script type="text/template" id="art-template">
+		{{each children}}
+				<tr><td>{{ $value.name }}</td><td>{{ $value.age }}</td></tr>
+		{{/each}}
+	</script>
+	<script type="text/javascript">
+		var request = new XMLHttpRequest();
+		request.open('get','children.json',true);
+		request.send();
+		request.onload = function () {
+			var children = JSON.parse(request.responseText).children;
+			var result = template('art-template',{
+				children : children
+			});
+			var childrenBody = document.getElementById("childrenBody");
+			childrenBody.innerHTML = result;
+		}
+	</script>
+
+	<script type="text/template" id="temp">
+		<h1>{{ name }}</h1>
+		<h1>{{ age }}</h1>
+	</script>
+
+	<script type="text/javascript">
+		var result = template('temp',{
+			name : '张三',
+			age : 18
+		})
+		console.log(result);
+	</script>
+	
+</body>
+</html>

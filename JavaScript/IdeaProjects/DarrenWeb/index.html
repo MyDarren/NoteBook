@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript学习</title>
+    <link type="text/css" href="style.css" rel="stylesheet">
+    <style type="text/css">
+        p{
+            color: gray;
+        }
+        span{
+            color: orange;
+        }
+    </style>
+    <!--可以将js代码写在script标签中-->
+    <script type="text/javascript">
+        /**
+         * 注释，注释中的内容不会被执行，但是可以在源文件中查看
+         * alert("机智");
+         */
+        //可以在body中输出内容
+        //document.write("在页面中输出内容");
+        //console.log("控制台数据");
+    </script>
+    <!--也可以将js代码写在外部js文件中，然后通过script标签引入
+    写在外部文件中可以在不同文件中同时引用，也可以利用的浏览器的缓存机制
+    -->
+    <!--<script type="text/javascript" src="BaseJavaScript.js">-->
+        <!--//script标签一旦用于引入外部文件，就不能在script标签里面编写代码了，即使写了浏览器也会忽略，如果需要可以再创建一个script标签用于编写内部代码-->
+        <!--alert("内部js文件代码");-->
+    <!--</script>-->
+    <!--<script type="text/javascript" src="ObjectJavaScript.js"></script>-->
+    <!--<script type="text/javascript" src="FunctionJavaScript.js"></script>-->
+    <!--<script type="text/javascript" src="ArrayJavaScript.js"></script>-->
+</head>
+<body>
+    <!--一个&nbsp; 代表一个空格，-->
+    <!--在html标签中输入一个&nbsp; 就显示一个空格，输入两个&nbsp; 就显示两个空格。-->
+    <!--但是在标签中输入类似<div></div>无论多少个空格，只会显示一个空格的效果-->
+    <!--在网页中使用&#编码:输入Unicode编码，其中编码为10进制-->
+    <!--<h1>第一个网页<span>哈哈</span></h1>-->
+    <!--<h2 style="font-size: 30px">&#9856;</h2>-->
+    <!--<h3>吃饭了&nbsp;好的</h3>-->
+    <!--<h3>吃饭了好的</h3>-->
+    <!--<div>-->
+        <!--<p>吃饭了 好的</p> &lt;!&ndash;一个空格&ndash;&gt;-->
+        <!--<p>吃饭了      好的</p> &lt;!&ndash;一个空格&ndash;&gt;-->
+        <!--<p>吃饭了&nbsp;好的</p> &lt;!&ndash;一个空格&ndash;&gt;-->
+        <!--<p>吃饭了&nbsp;&nbsp;&nbsp;&nbsp;好的</p> &lt;!&ndash;三个空格&ndash;&gt;-->
+    <!--</div>-->
+    <!--<button onclick="alert('好帅啊!')">点我一下</button>-->
+    <!--<a href="javascript:alert('好的')">你也点一下</a>-->
+</body>
+</html>

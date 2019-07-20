@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function () {
+			var button = document.getElementById("button");
+			button.onclick = function () {
+				var link = document.getElementById("link1");
+				link.style.visibility = "hidden";
+			};
+		};
+	</script>
+	<style type="text/css">
+		
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		#link1 {
+			width: 100px;
+			height: 50px;
+			background-color: blue;
+			color: #fff;
+			text-align: center;
+			line-height: 50px;
+			/*display: none;*/
+			visibility: visible;
+		}
+
+		#button {
+			cursor: nwse-resize;
+		}
+
+		div {
+			width: 100px;
+			height: 30px;
+			background-color: yellow;
+			overflow: auto;
+		}
+
+		textarea {
+			width: 100px;
+			height: 30px;
+			/*resize: none;*/
+			background-color: yellow;
+		}
+
+	</style>
+</head>
+<body>
+	<!-- <a id="link1" href="#">百度</a>
+	<a id="button">按一下</a> -->
+
+	<!-- <div>
+		干嘛啊，搞事情，找打啊
+	</div> -->
+
+	<textarea name=""></textarea>
+
+</body>
+</html>

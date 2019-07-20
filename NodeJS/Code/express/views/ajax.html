@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax测试</title>
+	<script type="text/javascript">
+		/**
+		 * npm install --global http-server
+		 * hs -o
+		 * 在浏览器中打开http://127.0.0.1:8080/ajax.html
+		 * 参数
+		 * method: 请求的方式，如GET/POST/HEADER等，这个参数不区分大小写
+		 * url: 请求的地址，可以是相对地址如example.php，这个相对是相对于当前网页的url路径；也可以是绝对地址如http://www.example.com/		 example.php
+		 * async: 默认值为true，即为异步请求，若async=false，则为同步请求
+		 */
+		
+		/*
+		var request = new XMLHttpRequest();
+		request.onload = function () {
+			console.log(request.responseText);
+		};
+		request.open('get','index.html',true);
+		request.send();
+		*/
+		function ajaxRequest(method,url,callback) {
+			var request = new XMLHttpRequest();
+			request.open(method,url,true);
+			request.send();
+			request.onload = function () {
+				callback.call(request);
+			}
+		}
+		ajaxRequest('get','index.html',function () {
+			console.log(this.responseText);
+		});
+
+	</script>
+</head>
+<body>
+	<h1>Ajax请求</h1>
+</body>
+</html>
+

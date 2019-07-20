@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>主页</title>
+	<link type="text/css" rel="stylesheet" href="main.css">
+	<script type="text/javascript" src="main.js" charset="utf-8"></script>
+</head>
+<body>
+	<a href="404.html">首页</a>
+	<a id="video" href="javascript:;">视频</a>
+	<table>
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>年龄</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{each students}}
+				<tr><td>{{ $value.name }}</td><td>{{ $value.age }}</td></tr>
+			{{/each}}
+		</tbody>
+	</table>
+</body>
+</html>

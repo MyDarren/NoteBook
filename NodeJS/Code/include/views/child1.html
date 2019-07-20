@@ -1,0 +1,19 @@
+{{ extend './layout.html' }}
+
+{{ block 'css' }}
+	<style type="text/css">
+		body{
+			background-color: orange;
+		}
+	</style>
+{{ /block }}
+
+{{ block 'layoutContent' }}
+	<a href="https://www.baidu.com">百度</a>
+{{ /block }}
+
+{{ block 'script' }}
+	<script type="text/javascript">
+		console.log('百度');
+	</script>
+{{ /block }}

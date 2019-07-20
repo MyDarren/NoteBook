@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript-DOM</title>
+    <style type="text/css">
+        table{
+            padding: 0;
+            margin: auto;
+            background-color: #ffffff;
+            text-align: center;
+        }
+    </style>
+    <!--方法一：为window绑定onload事件-->
+    <script type="text/javascript" src="DOMJavaScript.js"></script>
+</head>
+<body>
+    <!--结构和行为耦合，不利于维护，不推荐使用-->
+    <!--可以为事件绑定处理的函数来响应事件，当对应的事件被触发时，绑定的函数才会被执行-->
+    <!--单击事件绑定的函数，称为单击响应函数-->
+    <button id="btn">咬我啊</button>
+    <ul id="city">
+        <li>北京</li>
+        <li>上海</li>
+        <li>武汉</li>
+    </ul>
+    <div class="inner">
+        Gender:
+        <input type="radio" class="input" name="gender" value="male"/>
+        Male
+        <input type="radio" class="input" name="gender" value="female"/>
+        Female
+        <br />
+        <input type="text" name="name" id="userId" value=""/>
+        <br />
+    </div>
+
+    <ul id="ul">
+        <li id="hb">湖北</li>
+        <li id="gd">广东</li>
+        <li id="sc">四川</li>
+        <li id="ah">安徽</li>
+        <li id="hn">河南</li>
+    </ul>
+
+    <table id="infoTable">
+        <tr>
+            <th>名字</th>
+            <th>性别</th>
+            <th>分数</th>
+            <th>操作</th>
+        </tr>
+
+        <tr>
+            <td>David</td>
+            <td>男</td>
+            <td>80</td>
+            <td><a href="https://www.baidu.com">删除</a></td>
+        </tr>
+
+        <tr>
+            <td>Ketty</td>
+            <td>女</td>
+            <td>85</td>
+            <td><a href="https://www.taobao.com">删除</a></td>
+        </tr>
+
+        <tr>
+            <td>Lucy</td>
+            <td>女</td>
+            <td>90</td>
+            <td><a href="https://www.jd.com">删除</a></td>
+        </tr>
+    </table>
+
+    <br />
+
+    <table id="inputTable">
+        <tr>
+            <td class="name">名字：</td>
+            <td>
+                <input type="text" id="nameInput">
+            </td>
+        </tr>
+
+        <tr>
+            <td class="sex">性别：</td>
+            <td>
+                <input type="text" id="sexInput">
+            </td>
+        </tr>
+
+        <tr>
+            <td class="age">分数：</td>
+            <td>
+                <input type="text" id="scoreInput">
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <button id="commit">提交</button>
+            </td>
+        </tr>
+    </table>
+
+    <!--方法二-->
+    <!--<script>-->
+        <!--var button = document.getElementById("btn");-->
+        <!--button.onclick = function (ev) {-->
+            <!--button.innerHTML = "搞事情";-->
+        <!--};-->
+    <!--</script>-->
+
+</body>
+</html>

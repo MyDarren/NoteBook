@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style> 
+		div {
+			border: 2px solid;
+			padding: 10px 40px; 
+			width: 300px;
+			height: 50px;
+			resize: both;
+			overflow: auto;
+			cursor: se-resize;
+		}
+		
+		p {
+			border: 2px solid;
+			padding: 10px 40px; 
+			width: 300px;
+			height: 50px;
+			resize: horizontal;
+			overflow: auto;
+			cursor: ew-resize;
+		}
+
+		textarea {
+			width: 100px;
+			height: 100px;
+			overflow: visible;
+			resize: vertical;
+			cursor: ns-resize;
+		}
+	</style>
+</head>
+<body>
+	<div>resize 属性规定是否可由用户调整元素尺寸。</div>
+	<p><b>注释：</b> Firefox 4+、Safari 以及 Chrome 支持 resize 属性。</p>
+	<textarea name="">
+		如果希望此属性生效，需要设置元素的 overflow 属性，值可以是 auto、hidden 或 scroll
+	</textarea>
+</body>
+</html>

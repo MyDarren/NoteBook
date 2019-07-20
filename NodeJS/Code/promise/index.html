@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Promise</title>
+</head>
+<body>
+	<form action="index_submit" method="get" id="user_form"></form>
+	<script type="text/javascript" src="template-web.js"></script>
+	<script type="text/javascript" src="jquery.js" ></script>
+	<script type="text/template" id="art-template">
+		<div>
+			<label>姓名</label>
+			<input type="text" value="{{ user.username }}">
+		</div>
+		<div>
+			<label>年龄</label>
+			<input type="text" value="{{ user.age }}">
+		</div>
+		<div>
+			<label>职业</label>
+			<select id="select">
+				{{ each jobs }}
+					{{ if user.job === $value.id }}
+						<option value="{{ $value.id }}" selected>{{ $value.name }}</option>
+					{{ else }}
+						<option value="{{ $value.id }}">{{ $value.name }}</option>
+					{{ /if }}
+				{{ /each }}
+			</select>
+		</div>
+	</script>
+	<script type="text/javascript">
+		function loadImageAsync (url) {
+		    return new Promise( function( resolve, reject){
+		        var image = new Image();
+		        image.onload = function(){
+	                resolve(image);
+	            };
+	            image.onerror = function () {
+	                reject(new Error("could not load image at "+ url) );
+	            };
+	            image.src = url;
+		    });
+		}
+		
+		// loadImageAsync('http://img.duoziwang.com/2018/06/2018010115167321.jpg').then( function (value) {
+		//     console.log(value);
+		// },function (error){
+		// 	console.log(error);
+		// });
+
+		function requestResource(method,url,callback) {
+			return new Promise(function (resolve,reject) {
+				var request = new XMLHttpRequest();
+				request.open(method,url,true);
+				request.send();
+				request.onload = function () {
+					callback && callback(request.responseText);
+					resolve(request.responseText);
+				};
+				request.onerror = function (error) {
+					callback && callback(error);
+					reject(error);
+				};
+			});
+		}
+		
+		// requestResource('get','./file1.txt',function (data) {
+		// 	console.log(data);
+		// });
+		
+		// requestResource('get','./file1.txt')
+		// 	.then(function(data){
+		// 		console.log(data);
+		// 	},function(error){
+		// 		console.log(error);
+		// 	});
+		
+		// var userInfo = {};
+		// var jobInfo = {};
+		// // 使用json-server --watch data.json开启数据接口
+		// requestResource('get','http://localhost:3000/users/1')
+		// 	.then(function (data) {
+		// 		userInfo = JSON.parse(data);
+		// 		return requestResource('get','http://localhost:3000/jobs/');
+		// 	})
+		// 	.then(function (data) {
+		// 		jobInfo = JSON.parse(data);
+		// 		var result = template('art-template',{
+		// 			user : userInfo,
+		// 			jobs : jobInfo
+		// 		});
+		// 		document.getElementById('user_form').innerHTML = result;
+		// 	})
+		
+		//jquery用法
+		var data = {};
+		$.get('http://localhost:3000/users/1')
+			.then(function (userData){
+				data.user = userData;
+				return $.get('http://localhost:3000/jobs');
+			})
+			.then(function (jobData) {
+				data.jobs = jobData;
+				var result = template('art-template',data);
+				document.getElementById('user_form').innerHTML = result;
+			})
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{{ extend './layout.html' }}
+
+{{ block 'css' }}
+	<style type="text/css">
+		body{
+			background-color: skyblue;
+		}
+	</style>
+{{ /block }}
+
+{{ block 'layoutContent' }}
+	<h1>首页</h1>
+{{ /block }}
+
+{{ block 'script' }}
+	<script type="text/javascript">
+		console.log('首页');
+	</script>
+{{ /block }}

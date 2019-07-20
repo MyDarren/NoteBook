@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		/*.test {
+			width: 100px;
+			height: 100px;
+			background: url(media/bing.png);
+		}
+		.test p {
+			width: 50px;
+			height: 30px;
+			background-color: yellow;
+		}
+
+		div#outer {
+			width: 500px;
+			background-color: red;
+		}
+		div#inner {
+			text-indent: 10%;
+			background-color: blue;
+		}
+		p {
+			width: 200px;
+			background-color: green;
+		}*/
+		.outer {
+			width: 500px;
+			height: 500px;
+			background-color: yellow;
+			font-size: 30px;
+		}
+		.inner {
+			width: 200px;
+			height: 200px;
+			background-color: skyblue;
+			text-align: center;
+			letter-spacing: 5px;
+			font-size: 1em;
+			vertical-align: center;
+		}
+		.outer .p1 {
+			word-spacing: 0px;
+		}
+		.outer .p2 {
+			word-spacing: 10px;
+			letter-spacing: 5px;
+			text-transform: lowercase;
+			direction: ltr;
+			unicode-bidi: embed;
+		}
+		/*body {font-size:100%;}
+		h1 {font-size:3.75em;}
+		h2 {font-size:2.5em;}
+		p {font-size:0.875em;}*/
+
+		ul {
+			/*list-style-type: square;*/
+			list-style-image: url(media/arrow.gif);
+			/*list-style-position: inside;*/
+			background-color: blue;
+			width: 100px;
+		}
+
+		/*ul .center{
+			list-style-type: circle;
+			background-color: yellow;
+		}
+
+		table {
+			border-collapse:collapse;
+		}
+
+		table,th, td {
+			border: 1px solid black;
+		}*/
+
+		table.one {
+			border-collapse: separate;
+			
+/*			border-spacing: 10px;*/
+/*			caption-side: bottom;*/
+			
+			empty-cells: show;
+
+		}
+		
+		table th,table,td {
+			background: url(media/arrow.gif) no-repeat yellow;
+		}
+		
+		.outline {
+			width: 200px;
+			height: 200px;
+			background-color: yellow;
+			border: red solid thin;
+			color: blue;
+			/*outline: blue double 2px;*/
+		}
+		
+		input {
+			width: 100px;
+			height: 80px;
+			/*outline: thick solid red;*/
+			background-color: red;
+			margin: 10px;
+		}
+		
+		a {
+			background-color: orange;
+			margin: 500px 10px;
+		}
+		
+	</style>
+</head>
+<body>
+	<!-- <div class="test">
+		<p>干嘛呢</p>
+	</div> -->
+
+	<!-- <div id="outer">
+		<div id="inner">some text. some text. some text.
+			<p>this is a paragragh.</p>
+		</div>
+	</div> -->
+
+	<!-- <div class="outer">
+		<div class="inner">干嘛啊哈哈哈</div>
+		<p class="p1">搞事情 咬我啊。</p>
+		<p class="p2">what is you name?</p>
+	</div> -->
+
+	<!-- <ul>
+		<li>干嘛，咬我啊，找打啊</li>
+		<li>吃饭</li>
+		<li class="center">找打</li>
+		<li>哈哈</li>
+		<li>好饿</li>
+	</ul> -->
+
+	<!-- <a href="#">百度</a> -->
+
+	<!-- <input type="text" name="" value="搞事情"> -->
+
+	<!-- <table class="one" border="1">
+		<caption>咬我啊</caption>
+		<tr>
+			<td>Adams</td>
+			<td>John</td>
+		</tr>
+		<tr>
+			<td>Bush</td>
+			<td></td>
+		</tr>
+	</table> -->
+
+	<div class="outline">
+		<input type="text" name="" value="搞事情">
+		<a href="#">百度</a>
+	</div>
+
+</body>
+</html>
