@@ -32,15 +32,15 @@ func main() {
 	/*
 	var number1 int = 10
 	//以二进制方式输出
-	fmt.Printf("%b\n",number1)
+	fmt.Printf("%b\n",number1)		//1010
 
 	//八进制以0开头
 	var number2 int = 011
-	fmt.Printf("%d\n",number2)
+	fmt.Printf("%d\n",number2)		//9
 
 	//十六进制
 	var number3 int = 0x11
-	fmt.Printf("%d\n",number3)
+	fmt.Printf("%d\n",number3)		//17
 	*/
 
 	//对于有符号的数而言，二进制的最高位是符号位，0表示正数，1表示负数
@@ -97,7 +97,7 @@ func main() {
 	*/
 
 	/**
-	* 右移运算符>>：低位溢出，符号位不变，并用符号为补溢出的高位
+	* 右移运算符>>：低位溢出，符号位不变，并用符号位补溢出的高位
 	* 左移运算符<<：符号位不变，低位补0
 
 	* 计算32>>2 
@@ -121,11 +121,4 @@ func main() {
 	fmt.Println(-32>>2)
 	fmt.Println(-32<<2)
 	*/
-
-	var age int = 20
-	if (age > 18) {
-		fmt.Println("成年人")
-	}else {
-		fmt.Println("未成年")
-	}
 }

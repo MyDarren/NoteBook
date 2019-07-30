@@ -72,6 +72,7 @@ func main() {
 		default:
 			fmt.Println("未知")
 	}
+	//男
 
 	var score int = 70
 	switch {
@@ -84,6 +85,7 @@ func main() {
 		default:
 			fmt.Println("不及格")
 	}
+	//及格
 
 	//在switch语句中可以直接声明一个变量，需要以分号结束
 	switch grade := 90; {
@@ -96,6 +98,7 @@ func main() {
 		default:
 			fmt.Println("不及格")
 	}
+	//良好
 
 	//switch穿透，如果在case语句块后添加fallthrough，则不需要判断下一个case表达式而执行下一个case中的语句
 	var number int = 10
@@ -108,6 +111,8 @@ func main() {
 		default:
 			fmt.Println("unknown")
 	}
+	//10
+	//11
 
 	//Type switch：switch语句还可以被用于type-switch来判断某一个interface变量中实际指向的变量类型
 	var x interface{}
@@ -127,4 +132,5 @@ func main() {
 		default:
 			fmt.Println("未知")
 	}
+	//x的类型10
 }

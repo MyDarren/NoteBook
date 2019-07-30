@@ -47,43 +47,43 @@ func main() {
 
 	//单个变量声明方式一
 	var number int = 10
-	fmt.Println("number=",number)
+	fmt.Println("number=",number)	//10
 
 	//单个变量声明方式二
 	//整型的默认类型为int，32位系统为4个字节，64位系统为8个字节
 	//整型的默认值为0
 	var age = 10
-	fmt.Println(age)
+	fmt.Println(age)	//10
 
 	//单个变量声明方式三
 	count := 10
-	fmt.Println(count)
+	fmt.Println(count)	//10
 
 	//多个变量声明方式一
 	var n1, n2 int
-	fmt.Println(n1 + n2)
+	fmt.Println(n1 + n2)	//0
 
 	//多个变量声明方式二
 	var a, b, c = 1, "hello", 20.0
-	fmt.Println(a,b,c)
+	fmt.Println(a,b,c)	//1 hello 20
 
 	//多个变量声明方式三
 	name, age := "Darren", 18
-	fmt.Println(name,age)
+	fmt.Println(name,age)	//Darren 18
 	
 	//打印全局变量
-	fmt.Println(m1,q)
+	fmt.Println(m1,q)	//10 Lucy
 
 	var x = 10
 	//fmt.Printf()可以用于格式化输出，%T可以输出变量的类型
-	fmt.Printf("x的类型%T\n",x)
-	fmt.Printf("x占用的字节数%d\n",unsafe.Sizeof(x))
+	fmt.Printf("x的类型%T\n",x)		//x的类型int
+	fmt.Printf("x占用的字节数%d\n",unsafe.Sizeof(x))	//x占用的字节数8
 
 	//浮点型的默认类型为float64，8位字节，不受32位或64位系统影响
 	//浮点型的默认值为0
 	var y = 10.5
-	fmt.Printf("y的类型%T\n",y)
-	fmt.Printf("y占用的字节数%d\n",unsafe.Sizeof(y))
+	fmt.Printf("y的类型%T\n",y)		//y的类型float64
+	fmt.Printf("y占用的字节数%d\n",unsafe.Sizeof(y))	//y占用的字节数8
 
 	//go语言中没有字符类型，如果保存的字符在ASCII表中，可以使用byte保存，
 	//如果字符对应的码值超过255，则可以使用int保存
@@ -93,6 +93,7 @@ func main() {
 	fmt.Println(char1)  		//97
 	//如果需要输出对应的字符，则需要使用格式化输出
 	fmt.Printf("%c\n",char1) 	//'a'
+	fmt.Printf("char1占用的字节数%d\n", unsafe.Sizeof(char1))	//1
 
 	/*
 	* overflows byte
@@ -109,14 +110,17 @@ func main() {
 
 	//字符类型可以按照UTF-8编码码值进行计算
 	var char4 byte = 'a'
+	fmt.Printf("%d\n", char4)	//97
 	var result = char4 + 10
 	fmt.Println(result)			//107
+	
 
 	//bool类型占用1个字节的存储空间
 	//bool类型默认值为false
 	var m = false
-	fmt.Println(m)
-	fmt.Println(unsafe.Sizeof(m))
+	fmt.Println(m)	//false
+	fmt.Printf("%t\n",m)	//false
+	fmt.Println(unsafe.Sizeof(m))	//1
 	//bool类型只能取true或false，不能使用0或非0的数字代替
 	//m = 1
 
@@ -127,7 +131,7 @@ func main() {
 	* 2、反引号，会以字符串的原生形式输出，包括换行和特殊字符，可以防止攻击，输出源代码等
 	*/
 	var str1 string = "hello world"
-	fmt.Println(str1)
+	fmt.Println(str1)	//hello world
 
 	/*
 	var str2 string = `
@@ -145,23 +149,32 @@ func main() {
 
 	//字符串拼接
 	var str3 string = "How " + "are " + "you?"
-	fmt.Println(str3)
+	fmt.Println(str3)	//How are you?
 
 	//当字符串很长时，可以分行写，但是需要将"+"号保留在行尾，不能在行首
 	var str4 string = "Hello world " + "How are you? " + "Thank you! " +
 					  "Hello world " + "How are you? " + "Thank you! " +
 					  "Hello world " + "How are you? " + "Thank you! "
-	fmt.Println(str4)
+	fmt.Println(str4)	//Hello world How are you? Thank you! Hello world How are you? Thank you! Hello world How are you? Thank you! 
 	
 	//基本数据类型的默认值
 	var defaultInt int  //0
 	var defaultFloat32 float32  //0
 	var defaultFloat64 float64  //0
 	var defaultBool bool  //false
+	var defaultByte byte  //0
 	var defaultString string  //""
 	//%v表示按照变量的原值输出
-	fmt.Printf("defaultInt=%v\ndefaultFloat32=%v\ndefaultFloat64=%v\ndefaultBool=%v\ndefaultString=%v\n",
-		defaultInt,defaultFloat32,defaultFloat64,defaultBool,defaultString)
+	fmt.Printf("defaultInt=%v\ndefaultFloat32=%v\ndefaultFloat64=%v\ndefaultBool=%v\ndefaultByte=%v\ndefaultString=%v\n",
+		defaultInt,defaultFloat32,defaultFloat64,defaultBool,defaultByte,defaultString)
+	/*
+	defaultInt=0
+	defaultFloat32=0
+	defaultFloat64=0
+	defaultBool=false
+	defaultByte=0
+	defaultString=
+	*/
 
 	/*
 	* 基本数据类型的转换
@@ -172,17 +185,17 @@ func main() {
 	*/
 	var originX int = 10
 	var transformY = float64(originX)
-	fmt.Println(transformY)
-	fmt.Printf("%T\n",originX)
+	fmt.Println(transformY)		//10
+	fmt.Printf("%T\n",transformY)	//float64
 	
 	var number64 int64 = 999999
 	var number8 = int8(number64)
-	fmt.Println(number8)
+	fmt.Println(number8)	//63
 
 	var testn1 int32 = 12
 	var testn2 int8 = int8(testn1) + 127  //编译通过，但是运行时溢出
 	//var testn3 int8 = int8(testn1) + 128  //128超过int8范围，编译不通过
-	fmt.Println(testn2)
+	fmt.Println(testn2)		//-117
 
 	//基本数据类型转string
 	var basicInt int = 10
@@ -193,31 +206,36 @@ func main() {
 
 	//方式一：使用fmt.Sprintf()
 	transformStr = fmt.Sprintf("%d",basicInt)
-	fmt.Printf("type:%T--%q\n",transformStr,transformStr)
+	fmt.Printf("type:%T--%q\n",transformStr,transformStr)	//type:string--"10"
 
 	transformStr = fmt.Sprintf("%f",basicFloat)
-	fmt.Printf("type:%T--%q\n",transformStr,transformStr)
+	fmt.Printf("type:%T--%q\n",transformStr,transformStr)	//type:string--"10.654000"
 
 	transformStr = fmt.Sprintf("%c",basicChar)
-	fmt.Printf("type:%T--%q\n",transformStr,transformStr)
+	fmt.Printf("type:%T--%q\n",transformStr,transformStr)	//type:string--"a"
 
 	transformStr = fmt.Sprintf("%t",basicBool)
-	fmt.Printf("type:%T--%q\n",transformStr,transformStr)
+	fmt.Printf("type:%T--%q\n",transformStr,transformStr)	//type:string--"true"
 
-	//方式二：使用strconv包中的函数
+	//方式二：使用strconv包中的函数，10表示转换为10进制int类型
 	transformStr = strconv.FormatInt(int64(basicInt),10)
-	fmt.Printf("type:%T--%q\n",transformStr,transformStr)
+	fmt.Printf("type:%T--%q\n",transformStr,transformStr)	//type:string--"10"
 
 	//此方法也可以将int类型转string
 	transformStr = strconv.Itoa(basicInt)
-	fmt.Printf("type:%T--%q\n",transformStr,transformStr)
+	fmt.Printf("type:%T--%q\n",transformStr,transformStr)	//type:string--"10"
 
 	//'f'表示格式，10表示小数点保留10位，64表示这个数是float64类型
 	transformStr = strconv.FormatFloat(basicFloat,'f',10,64)
-	fmt.Printf("type:%T--%q\n",transformStr,transformStr)
+	fmt.Printf("type:%T--%q\n",transformStr,transformStr)	//type:string--"10.6540000000"
 
 	transformStr = strconv.FormatBool(basicBool)
-	fmt.Printf("type:%T--%q\n",transformStr,transformStr)
+	fmt.Printf("type:%T--%q\n",transformStr,transformStr)	//type:string--"true"
+
+	//使用%s进行基本的字符串输出。
+    fmt.Printf("%s\n", "\"string\"")	//"string"
+	//像Go源代码中那样带有双引号的输出，使用%q。
+    fmt.Printf("%q\n", "\"string\"")	//"\"string\""
 
 	//string转基本数据类型
 	//方式一：使用strconv包中的函数
@@ -225,30 +243,32 @@ func main() {
 	var transformBool bool
 	//strconv.ParseBool(boolStr)返回两个函数值(value bool, err error)，可以使用_忽略第二个函数返回值
 	transformBool, _ = strconv.ParseBool(boolStr)
-	fmt.Printf("type:%T--%v\n",transformBool,transformBool)
+	fmt.Printf("type:%T--%v\n",transformBool,transformBool)	//type:bool--true
 
 	var intStr string = "1234"
 	var transformInt int64
 	//10表示转成十进制数，64表示转成64位数，如果为0则表示转成int
 	//该函数的返回值为int64，如果需要返回其他整型，则可以再次进行基本数据类型转换
 	transformInt, _ = strconv.ParseInt(intStr,10,64)
-	fmt.Printf("type:%T--%v\n",transformInt,transformInt)
+	fmt.Printf("type:%T--%v\n",transformInt,transformInt)	//type:int64--1234
 
 	var floatStr string = "12.345"
 	var transformFloat float64
-	//该函数的返回值为float64，如果需要返回其他浮点型，则可以再次进行基本数据类型转换
+	//该函数的返回值为float64，即使第二个参数设置为32，如果需要返回其他浮点型，则可以再次进行基本数据类型转换
 	transformFloat, _ = strconv.ParseFloat(floatStr,64)
-	fmt.Printf("type:%T--%v\n",transformFloat,transformFloat)
+	fmt.Printf("type:%T--%v\n",transformFloat,transformFloat)	//type:float64--12.345
 
 	//string转基本数据类型时要确保可以转成有效的数据，如果不能，则会转成要转换类型的默认值
 	var transformString string = "hello"
 	var transformIntValue int64
 	transformIntValue, _ = strconv.ParseInt(transformString,10,64)
-	//type:int64--0
-	fmt.Printf("type:%T--%v\n",transformIntValue,transformIntValue)
+	fmt.Printf("type:%T--%v\n",transformIntValue,transformIntValue)		//type:int64--0
 
 	var transformBoolValue bool = true
 	transformBoolValue, _ = strconv.ParseBool(transformString)
-	//type:bool--false
-	fmt.Printf("type:%T--%v\n",transformBoolValue,transformBoolValue)
+	fmt.Printf("type:%T--%v\n",transformBoolValue,transformBoolValue)	//type:bool--false
+
+	var transformFloatValue float64
+	transformFloatValue, _ = strconv.ParseFloat(transformString, 64)
+	fmt.Printf("type:%T--%v\n",transformFloatValue,transformFloatValue)	//type:float64--0
 }
