@@ -10,6 +10,10 @@ import (
 )
 
 /*
+安装Go需要设置的环境变量：
+	GOROOT：指定SDK的安装路径
+	PATH：添加SDK的bin路径
+	GOPATH：工作目录
 go语言定义过的变量或者import的包，如果没有用到则不能编译通过
 go语言严格区分大小写
 go语言每个语句之后不需要分号
