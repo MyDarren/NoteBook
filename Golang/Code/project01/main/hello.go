@@ -5,8 +5,8 @@ package main //表示hello.go文件所在的包为main，在go中，每一个文
 //如果没有用到某个包，编译时会报错，但是又不想删除，可以在前面使用"_"表示忽略
 import (
 	"fmt"
-	"unsafe"
 	"strconv"
+	"unsafe"
 )
 
 /*
@@ -41,7 +41,7 @@ var (
 * 主要内容：
 * 1、数据类型
 * 2、数据类型的转换
-*/
+ */
 func main() {
 	fmt.Println("Hello world")
 
@@ -90,30 +90,29 @@ func main() {
 	//go语言中的字符使用UTF-8编码,UTF-8编码中英文字母使用一个字节表示，中文使用三个字节表示
 	var char1 byte = 'a'
 	//直接输出byte值，会输出对应字符的UTF-8编码码值
-	fmt.Println(char1)  		//97
+	fmt.Println(char1) //97
 	//如果需要输出对应的字符，则需要使用格式化输出
 	fmt.Printf("%c\n",char1) 	//'a'
 	fmt.Printf("char1占用的字节数%d\n", unsafe.Sizeof(char1))	//1
 
 	/*
-	* overflows byte
-	var char2 byte = '北'
-	fmt.Println(char2)
-	fmt.Printf(char2)
+		* overflows byte
+		var char2 byte = '北'
+		fmt.Println(char2)
+		fmt.Printf(char2)
 	*/
 
 	var char3 int = '北'
-	fmt.Println(char3)			//21271
-	fmt.Printf("%c\n",char3)	//'北'
+	fmt.Println(char3)        //21271
+	fmt.Printf("%c\n", char3) //'北'
 	//如果给变量赋值一个数字，然后按照格式化%c输出时，会输出该数字对应的unicode字符
-	fmt.Printf("%c\n",21271)	//'北'
+	fmt.Printf("%c\n", 21271) //'北'
 
 	//字符类型可以按照UTF-8编码码值进行计算
 	var char4 byte = 'a'
 	fmt.Printf("%d\n", char4)	//97
 	var result = char4 + 10
 	fmt.Println(result)			//107
-	
 
 	//bool类型占用1个字节的存储空间
 	//bool类型默认值为false
@@ -129,22 +128,22 @@ func main() {
 	* 字符串的两种表示方式
 	* 1、双引号，会识别转义字符
 	* 2、反引号，会以字符串的原生形式输出，包括换行和特殊字符，可以防止攻击，输出源代码等
-	*/
+	 */
 	var str1 string = "hello world"
 	fmt.Println(str1)	//hello world
 
 	/*
-	var str2 string = `
-		package main //表示hello.go文件所在的包为main，在go中，每一个文件都必须归属于一个包
-		//import "fmt" //表示引入一个包，包名为fmt，引入后就可以使用包中的函数
-		
-		//引入多个包时可以单行引入，也可以按照下面方式引入
-		import (
-			"fmt"
-			"unsafe"
-		)
-	`
-	fmt.Println(str2)
+		var str2 string = `
+			package main //表示hello.go文件所在的包为main，在go中，每一个文件都必须归属于一个包
+			//import "fmt" //表示引入一个包，包名为fmt，引入后就可以使用包中的函数
+
+			//引入多个包时可以单行引入，也可以按照下面方式引入
+			import (
+				"fmt"
+				"unsafe"
+			)
+		`
+		fmt.Println(str2)
 	*/
 
 	//字符串拼接
@@ -182,18 +181,18 @@ func main() {
 	* 表达式T(v)就是将变量v转换为类型T
 	* 被转换的是变量存储的数据，变量本身的数据类型并没有变化
 	* 在转换时，比如将int64转换为int8，编译时不会报错，只是转换的结果按照溢出处理，和希望的结果会不一样
-	*/
+	 */
 	var originX int = 10
 	var transformY = float64(originX)
 	fmt.Println(transformY)		//10
 	fmt.Printf("%T\n",transformY)	//float64
-	
+
 	var number64 int64 = 999999
 	var number8 = int8(number64)
 	fmt.Println(number8)	//63
 
 	var testn1 int32 = 12
-	var testn2 int8 = int8(testn1) + 127  //编译通过，但是运行时溢出
+	var testn2 int8 = int8(testn1) + 127 //编译通过，但是运行时溢出
 	//var testn3 int8 = int8(testn1) + 128  //128超过int8范围，编译不通过
 	fmt.Println(testn2)		//-117
 
