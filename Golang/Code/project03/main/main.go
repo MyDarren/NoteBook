@@ -1,6 +1,8 @@
 package main 
 import (
 	"fmt"
+	"math/rand"
+	"time"
 )
 
 func main() {
@@ -74,6 +76,7 @@ func main() {
 	}
 	//男
 
+	//switch后可以不带表达式类似于if--else分支来使用
 	var score int = 70
 	switch {
 		case score > 90:
@@ -87,7 +90,7 @@ func main() {
 	}
 	//及格
 
-	//在switch语句中可以直接声明一个变量，需要以分号结束
+	//在switch语句中可以直接声明一个变量，需要以分号结束，不推荐
 	switch grade := 90; {
 		case grade > 90:
 			fmt.Println("优秀")
@@ -101,6 +104,7 @@ func main() {
 	//良好
 
 	//switch穿透，如果在case语句块后添加fallthrough，则不需要判断下一个case表达式而执行下一个case中的语句
+	//默认只能穿透一层
 	var number int = 10
 	switch number {
 		case 10:
@@ -120,17 +124,76 @@ func main() {
 	x = y
 	switch i := x.(type){
 		case nil:
-			fmt.Printf("x的类型%v\n",i)
+			fmt.Printf("x的类型%T\n",i)
 		case int:
-			fmt.Printf("x的类型%v\n",i)
+			fmt.Printf("x的类型%T\n",i)
 		case float64:
-			fmt.Printf("x的类型%v\n",i)
+			fmt.Printf("x的类型%T\n",i)
 		case func(int) float64:
 			fmt.Println("x 是 func(int)型")
 		case bool, string:
-			fmt.Printf("x的类型%v\n",i)
+			fmt.Printf("x的类型%T\n",i)
 		default:
 			fmt.Println("未知")
 	}
-	//x的类型10
+	//x的类型float64
+
+	//for循环
+	for i := 0; i < 10; i++ {
+		//fmt.Println(i)
+	}
+
+	//for循环的第二种方式
+	j := 1
+	for j < 10 {
+		//fmt.Println(j)
+		j++
+	}
+
+	//for循环的第三种方式
+	//go语言中没有while和do...while语法，可以通过下面案例实现while语法
+	k := 0
+	for {	//等价于for ; ;
+		if k > 5 {
+			break
+		}else {
+			//fmt.Println(k)
+			k++
+		}
+	}
+
+	//可以通过下面案例实现do...while语法
+	l := 0
+	for {
+		//fmt.Println(k)
+		l++
+		if l > 5 {
+			break
+		}
+	}
+
+	//字符串遍历方式一
+	//如果字符串中含有中文，此方式按照字节来遍历，而一个汉字在utf-8编码中对应三个字节，因而会出现乱码
+	//可以通过将字符串转成[]tune切片解决
+	var str1 string = "hello北京"
+	for i := 0; i < len(str1); i++ {
+		//fmt.Printf("%c\n",str1[i])
+	}
+	str2 := []rune(str1)
+	for i := 0; i < len(str2); i++ {
+		//fmt.Printf("%d-%c\n",i,str2[i])
+	}
+
+	//字符串遍历方式二for-range
+	//此方式是按照字符的方式来遍历的，因而不会出现乱码
+	// var str3 string = "hello上海"
+	// for index, val := range str3 {
+	// 	fmt.Printf("index=%d,val=%c\n",index,val)
+	// }
+
+	//生成[1,100]的随机数
+	rand.Seed(time.Now().UnixNano())//返回时间戳，Unix()单位s，UnixNano()单位纳秒
+	//rand.Intn(n) [0,n)
+	var randNumber = rand.Intn(100) + 1
+	fmt.Println(randNumber)
 }
