@@ -196,4 +196,98 @@ func main() {
 	//rand.Intn(n) [0,n)
 	var randNumber = rand.Intn(100) + 1
 	fmt.Println(randNumber)
+
+	//可以使用标签和break指明要跳出哪一层循环
+	label1:
+	for i := 0; i < 4; i++ {
+		// label2:
+		for j := 0; j < 3; j++{
+			if j == 1 {
+				/**
+				i = 0,j = 0
+				i = 1,j = 0
+				i = 2,j = 0
+				i = 3,j = 0
+				*/
+				//break
+
+				/**
+				i = 0,j = 0
+				*/
+				break label1
+
+				/**
+				i = 0,j = 0
+				i = 1,j = 0
+				i = 2,j = 0
+				i = 3,j = 0
+				*/
+				//break label2
+			}
+			//fmt.Printf("i = %d,j = %d\n", i,j)
+		}
+	}
+
+	//可以使用标签和continue指明要跳过哪一层循环
+	// label3:
+	for i := 0; i < 4; i++ {
+		label4:
+		for j := 0; j < 3; j++{
+			if j == 1 {
+				/**
+				i = 0,j = 0
+				i = 0,j = 2
+				i = 1,j = 0
+				i = 1,j = 2
+				i = 2,j = 0
+				i = 2,j = 2
+				i = 3,j = 0
+				i = 3,j = 2
+				*/
+				// continue
+
+				/**
+				i = 0,j = 0
+				i = 1,j = 0
+				i = 2,j = 0
+				i = 3,j = 0
+				*/
+				// continue label3
+
+				/**
+				i = 0,j = 0
+				i = 0,j = 2
+				i = 1,j = 0
+				i = 1,j = 2
+				i = 2,j = 0
+				i = 2,j = 2
+				i = 3,j = 0
+				i = 3,j = 2
+				*/
+				continue label4
+			}
+			//fmt.Printf("i = %d,j = %d\n", i,j)
+		}
+	}
+
+	//跳转控制语句goto
+	//go语言中goto语句可以无条件转移到程序中指定的行
+	//go语句通常与条件语句配合使用，可用于实现条件转移，跳出循环体等功能
+	//在go语言中一般不主张使用goto语句，以免造成程序流程的混乱
+
+	for i := 0; i < 5; i++ {
+		if i == 3 {
+			goto label5
+		}
+		//fmt.Printf("i = %d\n", i)
+	}
+	label5:
+	/**
+	i = 0
+	i = 1
+	i = 2
+	ok
+	*/
+	//fmt.Println("ok")
+
 }
