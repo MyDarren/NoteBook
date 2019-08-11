@@ -1,8 +1,10 @@
 package main
+
 import (
 	"fmt"
-	"../utils"
 	"strings"
+
+	"../utils"
 )
 
 /**
@@ -21,7 +23,7 @@ golang支持匿名函数
 var (
 	age = test()
 	//全局匿名函数
-	Func = func (n1 int, n2 int) int {
+	Func = func(n1 int, n2 int) int {
 		return n1 + n2
 	}
 )
@@ -48,9 +50,9 @@ func init() {
    因为函数和它引用到的变量共同构成闭包
 5、
 */
-func AddUpper() func (int) int {
+func AddUpper() func(int) int {
 	var count int = 10
-	return func (n int) int {
+	return func(n int) int {
 		count = count + n
 		return count
 	}
@@ -58,8 +60,8 @@ func AddUpper() func (int) int {
 
 //返回的匿名函数和makeSuffix(suffix string)的suffix变量组合成一个闭包
 //因为返回的函数引用到suffix这个变量
-func makeSuffix(suffix string) func (name string) string{
-	return func (name string) string {
+func makeSuffix(suffix string) func(name string) string {
+	return func(name string) string {
 		if !strings.HasSuffix(name, suffix) {
 			return name + suffix
 		}
@@ -71,9 +73,11 @@ func makeSuffix(suffix string) func (name string) string{
 1、当go执行到defer时，暂时不执行，会将defer后面的语句压入栈中
 2、当函数执行完毕后，再从栈中按照先入后出的方式出栈，然后执行
 3、在defer将语句压入栈中，会将相关的值拷贝同时入栈
+4、defer最主要的价值在于当函数执行完毕后，可以及时释放函数创建的资源
+   例如：打开文件，连接数据库等
 */
 func deferSum(n1 int, n2 int) int {
-	
+
 	defer fmt.Printf("ok1 n1=%v\n", n1)
 	defer fmt.Printf("ok2 n2=%v\n", n2)
 
@@ -84,44 +88,44 @@ func deferSum(n1 int, n2 int) int {
 	return result
 }
 
-func main()  {
+func main() {
 	fmt.Println("main()...age=", age)
 	fmt.Printf("age=%v, name=%v\n", utils.Age, utils.Name)
 
 	//匿名函数使用方式一
-	result := func (n1 int, n2 int) int{
+	result := func(n1 int, n2 int) int {
 		return n1 + n2
 	}(10, 20)
-	fmt.Println("result=",result)
+	fmt.Println("result=", result)
 
 	//匿名函数使用方式二
-	myFunc := func (n1 int, n2 int) int {
+	myFunc := func(n1 int, n2 int) int {
 		return n1 - n2
 	}
-	fmt.Printf("result=%v\n",myFunc(50,30))
-	fmt.Printf("result=%v\n",myFunc(10,30))
-	fmt.Printf("result=%v\n",Func(60,30))
+	fmt.Printf("result=%v\n", myFunc(50, 30))
+	fmt.Printf("result=%v\n", myFunc(10, 30))
+	fmt.Printf("result=%v\n", Func(60, 30))
 
 	addFunc := AddUpper()
 	result1 := addFunc(1)
-	fmt.Printf("result1=%v\n",result1)
+	fmt.Printf("result1=%v\n", result1)
 	result1 = addFunc(2)
-	fmt.Printf("result1=%v\n",result1)
+	fmt.Printf("result1=%v\n", result1)
 	result1 = addFunc(3)
-	fmt.Printf("result1=%v\n",result1)
+	fmt.Printf("result1=%v\n", result1)
 
 	result2 := AddUpper()(1)
-	fmt.Printf("result2=%v\n",result2)
+	fmt.Printf("result2=%v\n", result2)
 	result2 = AddUpper()(2)
-	fmt.Printf("result2=%v\n",result2)
+	fmt.Printf("result2=%v\n", result2)
 	result2 = AddUpper()(3)
-	fmt.Printf("result2=%v\n",result2)
+	fmt.Printf("result2=%v\n", result2)
 
 	suffixFunc := makeSuffix(".jpg")
 	result3 := suffixFunc("winter")
-	fmt.Printf("result3=%v\n",result3)
+	fmt.Printf("result3=%v\n", result3)
 	result3 = suffixFunc("bird.jpg")
-	fmt.Printf("result3=%v\n",result3)
+	fmt.Printf("result3=%v\n", result3)
 
 	result4 := deferSum(10, 20)
 	fmt.Printf("result4=%v\n", result4)
