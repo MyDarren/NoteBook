@@ -27,6 +27,17 @@ import "fmt"
 	 例如：type myInt int
 	 type myFunc func(int,int) int
  6、golang支持对函数返回值命名
+ 7、golang支持可变参数
+	 //支持0到多个参数
+	 func sum(args... int) int {
+
+	 }
+	 //支持1到多个参数
+	 func sum(n1 int, args... int) int {
+
+	 }
+	//可变参数名称args可以用其他代替
+	//如果一个函数的形参列表有可变参数，则可变参数需要放在形参列表最后
 */
 
 type MyInt int
@@ -75,6 +86,27 @@ func cal(n1 int, n2 int) (sum int, sub int) {
 	return
 }
 
+//可变参数
+func mySum(n1 int, args... int) int {
+	sum := n1
+	for i := 0; i < len(args); i++ {
+		sum += args[i]
+	}
+	return sum
+}
+
+//形参列表中如果前面的参数数据类型和后面的一样，则前面的参数类型可以省略
+func myTest(n1, n2 int, n3 float32) float32 {
+	fmt.Printf("n1的类型:%T\nn2的类型:%T\nn3的类型:%T\n", n1, n2, n3)
+	return float32(n1) + float32(n2) + n3
+}
+
+func swap(n1 *int, n2 *int) {
+	tmp := *n1
+	*n1 = *n2
+	*n2 = tmp
+}
+
 func main()  {
 	n1 := 20
 	n2 := 5
@@ -115,5 +147,13 @@ func main()  {
 	result6, result7 := cal(30, 20)
 	fmt.Printf("result6=%v\nresult7=%v\n",result6,result7)
 
-	//120_尚硅谷_Go核心编程
+	result8 := mySum(10, 20, 30)
+	fmt.Println("result8 =", result8)
+
+	myTest(10, 20, 30)
+
+	var number1 int = 10
+	var number2 int = 30
+	swap(&number1, &number2)
+	fmt.Printf("number1=%v\nnumber2=%v\n", number1, number2)
 }

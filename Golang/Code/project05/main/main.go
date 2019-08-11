@@ -1,9 +1,11 @@
 package main
+
 import (
 	"fmt"
+
+	myAlias "../alias" //给包取别名
+	abc "../test"
 	"../utils"
-	"../test"
-	myAlias "../alias"  //给包取别名
 )
 
 /**
@@ -37,7 +39,7 @@ import (
  3、package指令在文件第一行，然后是import指令
  4、在import包时，路径从$GOPATH工作目录开始
  5、为了让其他包的文件，可以访问本包的函数，则该函数名的首字母需要大写，类似其他语言的public，表示该函数可导出,这样才能跨包访问
-	如果想让其他包中的文件可以访问本包的变量，则该变量名首字母需要大写	  
+	如果想让其他包中的文件可以访问本包的变量，则该变量名首字母需要大写
  6、在访问其他包函数时，其语法是包名.函数名，访问其他包变量时，其语法是包名.变量名
  7、如果包名较长，Go支持给包取别名，取别名之后，原来的包名就不能使用了
 	例如给"../alias"取别名myAlias，无论其下面的文件包名是什么，都要用myAlias访问变量和函数
@@ -50,25 +52,25 @@ import (
 	使用./bin/project.bin进行执行
 */
 
-func sum(a int, b int) (int){
+func sum(a int, b int) int {
 	return a + b
 }
 
 func main() {
 	fmt.Println("hello")
-	number1 := sum(10,20)
-	fmt.Println(number1) 
+	number1 := sum(10, 20)
+	fmt.Println(number1)
 
-	number2 := utils.Sum(10,20)
+	number2 := utils.Sum(10, 20)
 	fmt.Println(number2)
 
-	number3 := abc.MySum(10,20)
+	number3 := abc.MySum(10, 20)
 	fmt.Println(number3)
 	abc.MyPrint()
 	fmt.Println(abc.Name)
 
 	fmt.Println(utils.Number)
 	//fmt.Println(alias.Name)
-	fmt.Println(myAlias.Name)//给包取别名之后，原来的包名就不能使用了
+	fmt.Println(myAlias.Name) //给包取别名之后，原来的包名就不能使用了
 	myAlias.AliasPrint()
 }
