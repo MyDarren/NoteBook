@@ -74,7 +74,10 @@ func makeSuffix(suffix string) func(name string) string {
 2、当函数执行完毕后，再从栈中按照先入后出的方式出栈，然后执行
 3、在defer将语句压入栈中，会将相关的值拷贝同时入栈
 4、defer最主要的价值在于当函数执行完毕后，可以及时释放函数创建的资源
-   例如：打开文件，连接数据库等
+   在golang中的通常做法是创建资源后，例如：打开文件，连接数据库等，
+   获得数据库的链接或者锁资源，可以执行defer file.Close() defer connect.Close()，
+   在defer后，可以继续使用创建资源，在函数执行完毕后，系统会从栈中取出语句并执行，
+   关闭资源，因而不需要为在什么时机关闭资源而烦心
 */
 func deferSum(n1 int, n2 int) int {
 
@@ -130,5 +133,4 @@ func main() {
 	result4 := deferSum(10, 20)
 	fmt.Printf("result4=%v\n", result4)
 
-	//127
 }

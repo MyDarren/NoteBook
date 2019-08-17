@@ -1,8 +1,9 @@
 package efg
+
 import "fmt"
 
 var Name string = "Darren"
 
-func AliasPrint()  {
+func AliasPrint() {
 	fmt.Println("AliasPrint")
 }
