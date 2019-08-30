@@ -16,6 +16,7 @@ import (
 var numArr01[6]int = [3]int{1, 2, 3}
 var numArr02 = [3]int{4, 5, 6}
 var numArr03 = [...]int{7, 8, 9}
+var numArr04 = [...]int{1: 50, 0: 10, 2: 35}
 
 数组的遍历
 1、常规遍历
