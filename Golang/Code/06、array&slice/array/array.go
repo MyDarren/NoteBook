@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"unsafe"
 )
 
 /**
@@ -66,6 +67,35 @@ func arrayFunc05(array [3]int) {
 	array[0] = 10
 }
 
+//冒泡排序
+func bubbleSort(arr *[5]int) {
+	tmp := 0
+	for i := 0; i < len(*arr)-1; i++ {
+		for j := 0; j < len(*arr)-1-i; j++ {
+			if (*arr)[j] < (*arr)[j+1] {
+				tmp = (*arr)[j]
+				(*arr)[j] = (*arr)[j+1]
+				(*arr)[j+1] = tmp
+			}
+		}
+	}
+}
+
+//数组升序
+func binarySearch(arr *[5]int, startIndex int, endIndex int, value int) int {
+	if startIndex > endIndex {
+		return -1
+	}
+	middle := (startIndex + endIndex) / 2
+	if (*arr)[middle] > value {
+		return binarySearch(arr, startIndex, middle-1, value)
+	} else if (*arr)[middle] < value {
+		return binarySearch(arr, middle+1, endIndex, value)
+	} else {
+		return middle
+	}
+}
+
 func main() {
 
 	var hens [6]float64
@@ -125,4 +155,55 @@ func main() {
 
 	var array07 = [3]int{1, 3, 5}
 	arrayFunc05(array07) //编译通过
+
+	//冒泡排序
+	var array08 = [5]int{10, 20, 50, 15, 5}
+	fmt.Printf("排序前array08=%v\n", array08)
+	bubbleSort(&array08)
+	fmt.Printf("排序后array08=%v\n", array08)
+
+	var array09 = [5]int{10, 15, 20, 35, 50}
+	index := binarySearch(&array09, 0, len(array09)-1, 50)
+	fmt.Printf("下标为%v\n", index)
+
+	//二维数组
+	//使用方式一：先声明/定义，后赋值
+	var arr10 [4][6]int
+	arr10[1][2] = 1
+	arr10[2][3] = 3
+	arr10[3][0] = 5
+
+	var arr11 [2][3]int
+	arr11[0][2] = 1
+	arr11[1][1] = 3
+	fmt.Printf("arr11[0]的地址%p\n", &arr11[0])
+	fmt.Printf("arr11[1]的地址%p\n", &arr11[1])
+	fmt.Printf("arr11[0][0]的地址%p\n", &arr11[0][0])
+	fmt.Printf("arr11[0][0]的地址%p\n", &arr11[0][0])
+	fmt.Printf("arr11的大小%d\n", unsafe.Sizeof(arr11))
+
+	//使用方式二：直接初始化，然后赋值
+	//二维数组在声明定义时也对应有四种写法
+	//var 数组名 [大小][大小]类型 = [大小][大小]类型{{初值...},{初值...}}
+	//var 数组名 [大小][大小]类型 = [...][大小]类型{{初值...},{初值...}}
+	//var 数组名 = [大小][大小]类型{{初值...},{初值...}}
+	//var 数组名 = [...][大小]类型{{初值...},{初值...}}
+	var arr12 = [2][3]int{{1, 2, 3}, {5, 4, 2}}
+	fmt.Println(arr12)
+
+	//二维数组的遍历
+	//for循环
+	for i := 0; i < len(arr12); i++ {
+		for j := 0; j < len(arr12[i]); j++ {
+			fmt.Printf("%v ", arr12[i][j])
+		}
+		fmt.Printf("\n")
+	}
+
+	for _, value1 := range arr12 {
+		for _, value2 := range value1 {
+			fmt.Printf("%v ", value2)
+		}
+		fmt.Printf("\n")
+	}
 }

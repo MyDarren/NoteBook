@@ -145,6 +145,4 @@ func main() {
 	runeSlice[0] = 'A'
 	str3 = string(runeSlice)
 	fmt.Println("str3=", str3)
-
-	//162
 }
