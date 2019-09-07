@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
 /**
@@ -45,7 +46,20 @@ map是key-value数据结构，又称为字段或者关联数组，类似于其�
    通道：通道缓存中队列(未读取)元素的数量；若v为nil，len(v)为0
 8、map切片
    切片的数据类型如果是map，则成为slice of map，map切片，这样使用map的个数可以动态变化
+9、map使用细节
+   1、map是引用类型，遵守引用类型传递机制，在一个函数中接收map，修改后，会直接修改原来的map
+   2、map的容量达到后，再添加元素，会自动扩容，不会发生panic，也就是说map能动态增长键值对
+   3、map的value经常使用struce类型，更适合管理复杂的数据
 */
+
+type teacher struct {
+	Name string
+	Age  int
+}
+
+func mapFunc(testMap map[string]int) {
+	testMap["age"] = 20
+}
 
 func main() {
 
@@ -107,5 +121,67 @@ func main() {
 		fmt.Printf("%v:%v\n", key, value)
 	}
 
-	//177
+	//map切片
+	var monsters = make([]map[string]string, 1)
+	monsters[0] = map[string]string{
+		"name": "牛魔王",
+	}
+	fmt.Printf("monsters=%v\n", monsters)
+	//一下写法越界
+	/*
+		monsters[1] = map[string]string{
+			"name": "蜘蛛精",
+		}
+	*/
+	var monster = map[string]string{
+		"name": "蜘蛛精",
+	}
+	monsters = append(monsters, monster)
+	fmt.Printf("monsters=%v\n", monsters)
+
+	//map排序
+	var numberMap = make(map[int]int, 10)
+	numberMap[10] = 10
+	numberMap[1] = 5
+	numberMap[4] = 6
+	numberMap[8] = 13
+	fmt.Printf("numberMap=%v\n", numberMap)
+
+	//1、将map中的key放入切片中
+	var keySlice = make([]int, 0)
+	for key, _ := range numberMap {
+		keySlice = append(keySlice, key)
+	}
+	fmt.Println(keySlice)
+
+	//2、对切片排序
+	sort.Ints(keySlice)
+	fmt.Println(keySlice)
+
+	//遍历切片，然后按照key来输出map的值
+	for _, value := range keySlice {
+		fmt.Printf("numberMap[%v]=%v\n", value, numberMap[value])
+	}
+
+	var modifyMap = map[string]int{
+		"age": 10,
+	}
+	fmt.Printf("修改前modifyMap=%v\n", modifyMap)
+	mapFunc(modifyMap)
+	fmt.Printf("修改后modifyMap=%v\n", modifyMap)
+
+	var teachers = make(map[int]teacher, 2)
+	teachers[0] = teacher{
+		Name: "Lucy",
+		Age:  10,
+	}
+	teachers[1] = teacher{
+		Name: "David",
+		Age:  10,
+	}
+	fmt.Println(teachers)
+
+	for key, value := range teachers {
+		fmt.Printf("编号:%v，名字:%v，年龄:%v\n", key, value.Name, value.Age)
+	}
 }
