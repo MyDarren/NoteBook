@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
@@ -41,6 +42,7 @@ import (
    1）结构体的所有字段在内存中是连续的
    2）结构体是用户单独定义的类型，和其他类型进行转换时需要有完全相同的字段(名字、类型、个数)
    3）结构体进行type重新定义(相当于取别名)，golang认为是新的数据类型，但是相互间可以强转
+9、struct的每个字段上，都可以使用tag，该tag可以通过反射机制获取，常见的使用场景是序列化和反序列化
 */
 
 type Cat struct {
@@ -83,6 +85,12 @@ type B struct {
 }
 
 type C B
+
+type Teacher struct {
+	Name string `json:"name"` //`json:"name"`就是struct tag
+	Age  int    `json:"age"`
+	City string `json:"city"`
+}
 
 func main() {
 
@@ -178,5 +186,14 @@ func main() {
 	c = C(b)
 	fmt.Println(c)
 
-	//190
+	//结构体tag
+	//json.Marshal函数使用反射
+	teacher := Teacher{"Lucy", 28, "BeiJing"}
+	jsonStr, error := json.Marshal(teacher)
+	if error != nil {
+		fmt.Printf("json序列化错误\n")
+	} else {
+		fmt.Printf("jsonStr=%v\n", string(jsonStr))
+	}
+
 }
