@@ -131,6 +131,4 @@ func main() {
 	fmt.Printf("main--student.Name=%v\n", student.Name) //David
 	student.method03()
 	fmt.Printf("main--student.Name=%v\n", student.Name) //Marry
-
-	//201
 }
