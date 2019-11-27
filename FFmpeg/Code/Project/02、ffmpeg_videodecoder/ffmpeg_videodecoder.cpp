@@ -12,17 +12,17 @@ extern "C" {
 int main (int argc, char *argv[]){
 
     AVCodecID codecID = AV_CODEC_ID_NONE;
-    char outputFileName[] = "bigbuckbunny_480x272.yuv";
+    char outputFileName[] = "out_bigbuckbunny_480x272.yuv";
 
 #if TEST_H264
     codecID = AV_CODEC_ID_H264;
-    char inputFileName[] = "bigbuckbunny_480x272.h264";
+    char inputFileName[] = "../../../Resource/bigbuckbunny_480x272.h264";
 #elif TEST_HEVC
     codecID = AV_CODEC_ID_HEVC;
-    char inputFileName[] = "bigbuckbunny_480x272.hevc";
+    char inputFileName[] = "../../../Resource/bigbuckbunny_480x272.hevc";
 #else
     codecID = AV_CODEC_ID_MPEG2VIDEO;
-    char inputFileName[] = "bigbuckbunny_480x272.m2v";
+    char inputFileName[] = "../../../Resource/bigbuckbunny_480x272.m2v";
 #endif
 
     avcodec_register_all();
